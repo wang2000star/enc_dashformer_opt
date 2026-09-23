@@ -108,6 +108,17 @@ model and output hashes, commands, logs, exit status and median total runtime.
 It does not calculate AUROC or claim accuracy preservation. Small development
 subsets are not an independent official competition test set.
 
+Compare the decrypted score files separately:
+
+```bash
+python3 scripts/compare_outputs.py results/comparison/01-baseline/output.txt \
+  results/comparison/01-optimized/output.txt
+```
+
+This reports maximum absolute difference, RMSE and top-1 agreement, rejecting
+mismatched or non-finite outputs. Agreement with the baseline is not accuracy
+against ground-truth labels.
+
 ## Container
 
 ```bash
