@@ -32,6 +32,7 @@ establish a new speedup.
   approximation tests on synthetic data.
 - `go vet ./...`: passed.
 - `go test -race ./utils`: passed. This is not a full inference race-detector run.
+- Three Python regression tests: passed (output comparison, invalid scores and benchmark orchestration).
 - Benchmark-runner integration test: passed; confirms alternating order, input
   preservation and refusal to overwrite an existing experiment.
 - Binary build and local 100-example input/model preflight: passed. Preflight does
@@ -41,7 +42,24 @@ establish a new speedup.
   The native binary was built and checked; CI execution is reported separately
   after publication rather than assumed from the workflow file.
 
-Full inference smoke-run status will be recorded after completion.
+## Completed end-to-end smoke check
+
+Both paths completed on one locally available development example, producing
+finite 25-class score vectors. With the same executable, input/model assets and
+`--log-p 31,31`, the reference run took 313.853 seconds and the approximate
+optimised run took 108.012 seconds. These are single-run functional measurements,
+not repeated performance estimates or a throughput result.
+
+The top prediction agreed, but maximum raw-score difference was 395.27145 and
+score RMSE was 131.34689 after the legacy output scaling. These substantial score
+differences must not be hidden behind the one-example prediction agreement.
+No accuracy-preservation claim is established. Full evaluation must use matched
+repeated runs and labelled data with an appropriate independent protocol.
+
+Detailed logs, output files and the input/model/executable hash manifest remain
+local in `results/engineering-smoke/`, excluded from publication. The smoke binary
+was built before a formatting-only cleanup; executable hashes are in that local
+manifest. No model or dataset is redistributed with this release.
 
 ## Limits and next engineering work
 
