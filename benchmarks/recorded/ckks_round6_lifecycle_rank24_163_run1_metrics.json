@@ -1,0 +1,33 @@
+{
+  "samples": 163,
+  "score_ranks": [
+    10,
+    10,
+    8,
+    10
+  ],
+  "value_ranks": [
+    24,
+    24,
+    24,
+    24
+  ],
+  "exact_plaintext_accuracy_pct": 60.122699386503065,
+  "approx_plaintext_accuracy_pct": 61.34969325153374,
+  "ckks_accuracy_pct": 60.73619631901841,
+  "exact_plaintext_micro_auc": 0.9283736058313574,
+  "approx_plaintext_micro_auc": 0.928285784184576,
+  "ckks_micro_auc": 0.9281179821094759,
+  "model_approximation_rmse": 4.693961066827989,
+  "model_approximation_relative_rmse_pct": 0.8902606849072677,
+  "model_approximation_linf": 41.147806788022535,
+  "model_approximation_prediction_agreement_pct": 97.54601226993866,
+  "ckks_numerical_rmse": 21.241564695359493,
+  "ckks_numerical_relative_rmse_pct": 4.0316801236876865,
+  "ckks_numerical_linf": 220.00818816536287,
+  "ckks_numerical_prediction_agreement_pct": 93.86503067484662,
+  "total_rmse": 21.8400695094408,
+  "total_relative_rmse_pct": 4.142206329170988,
+  "total_linf": 228.13892319047955,
+  "total_prediction_agreement_pct": 95.0920245398773
+}

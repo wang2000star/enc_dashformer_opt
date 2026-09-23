@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "historical_163": {
+    "date": "2026-09-08",
+    "samples": 163,
+    "runs_per_mode": 1,
+    "baseline_identity": "Full-rank reference path in the same historical experimental executable, not an independently built upstream checkout.",
+    "binary_sha256": "53b5729837baeca02b336726f13866304781e0d75e514f34728060bf95fec93b",
+    "input_sha256": "87f5b7207f0ef9dc777b7b74745b4ed6cb8ea4b4d7e5e16202f2a5e2bda507c9",
+    "parameters": {
+      "log_n": 14,
+      "log_qp": 437,
+      "log_scale": 33,
+      "gomaxprocs": 4,
+      "gogc": 50
+    },
+    "records": [
+      {
+        "mode": "baseline",
+        "label": "Full-rank reference",
+        "wall_seconds": 311.82,
+        "peak_rss_kib": 19682736,
+        "accuracy_pct": 60.122699386503065,
+        "micro_auc": 0.9281744388824068,
+        "ckks_numerical_rmse": 18.65804824154672,
+        "total_rmse": 18.65804824154672,
+        "sources": {
+          "ckks_round6_lifecycle_baseline_163_run1_metrics.json": "2c89729319abb6284f103d5a8ffaacab9a27e8b6772046037014859e75ec135a",
+          "ckks_round6_lifecycle_baseline_163_run1_time.txt": "3a15e5476de9f73bfaebdf2ef32cd3933557f91254f505ee292deb3a1dd9f585"
+        }
+      },
+      {
+        "mode": "rank24",
+        "label": "Optimised candidate",
+        "wall_seconds": 118.83,
+        "peak_rss_kib": 10092596,
+        "accuracy_pct": 60.73619631901841,
+        "micro_auc": 0.9281179821094759,
+        "ckks_numerical_rmse": 21.241564695359493,
+        "total_rmse": 21.8400695094408,
+        "sources": {
+          "ckks_round6_lifecycle_rank24_163_run1_metrics.json": "d4cbd9e381af317df1429e5a4b88e3035ef4ff1ea838a5331328e19fa28af359",
+          "ckks_round6_lifecycle_rank24_163_run1_time.txt": "5bb99a2d404861582837558c2edd7c6b78fe2bdd5826a4fe8ba6cbd46e873ada"
+        }
+      }
+    ]
+  },
+  "release_smoke": {
+    "date": "2026-09-23",
+    "samples": 1,
+    "runs_per_mode": 1,
+    "baseline_identity": "--baseline in the released optimised executable; not a separate upstream build.",
+    "binary_sha256": "979b9152274c7ca42c6fcfc5e2fc4bc80bd1c2dc16671b48be8b23cd3569fbf4",
+    "input_sha256": "09c897dfd648d5b82d4f50466e7491b837dcf9dfde9ffe5ff67538e44f5991cb",
+    "parameters": {
+      "log_n": 14,
+      "log_qp": 430,
+      "log_p": [
+        31,
+        31
+      ],
+      "log_scale": 33
+    },
+    "records": [
+      {
+        "mode": "baseline",
+        "wall_seconds": 313.8529732769821,
+        "exit_code": 0,
+        "output_sha256": "c655aa54f3b372234f3708b2202ede85735bfc01753d8192ad48bd3114749be8"
+      },
+      {
+        "mode": "optimized",
+        "wall_seconds": 108.01183126599062,
+        "exit_code": 0,
+        "output_sha256": "46b5e952bc99d892ed812536b8a41bde6116042f5816fda0a97261fc8785f6c8"
+      }
+    ],
+    "comparison": {
+      "rows": 1,
+      "classes": 25,
+      "max_absolute_difference": 395.2714496516448,
+      "root_mean_square_difference": 131.3468928726447,
+      "top1_agreement": 1.0,
+      "interpretation": "Pairwise score differences and agreement only; no labels or predictive accuracy evaluated."
+    },
+    "source_manifest_sha256": "69fe6da62f553593a265d3ac966e3f59ad8e02ced55b11a63a12387d39c01bbf"
+  },
+  "limits": [
+    "One timed run per mode in each experiment; no confidence interval or significance claim.",
+    "Historical and release experiments differ in version, parameters, input size and configuration; do not pool them.",
+    "The 163-example set was used for development; it is not an independent official test set.",
+    "Raw score RMSE does not by itself measure predictive accuracy.",
+    "No dataset, model weights or per-example outputs are included."
+  ]
+}

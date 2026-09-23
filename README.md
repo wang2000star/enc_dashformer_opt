@@ -10,6 +10,33 @@ not a general Transformer runtime or a production privacy service. Publication
 novelty, CCF ranking and accuracy preservation are not implied by this release.
 See [provenance and licensing status](NOTICE.md) before redistribution.
 
+## Recorded performance
+
+Historical measurements on **163 local development examples** show an observed
+**2.62× speedup** and **48.72% lower peak memory** for an approximate candidate
+against the full-rank reference path in the same experimental executable.
+
+| Metric | Full-rank reference | Optimised candidate |
+|---|---:|---:|
+| End-to-end runtime | 311.82 s | **118.83 s** |
+| Peak memory (RSS) | 18.771 GiB | **9.625 GiB** |
+| Classification accuracy | 60.123% | 60.736% |
+| Micro-AUC | 0.928174 | 0.928118 |
+| CKKS numerical RMSE | 18.658 | 21.242 |
+
+![Historical internal comparison: runtime and memory](docs/images/historical-comparison.png)
+
+**Scope:** one run per mode, historical implementation/configuration, development
+data, and an internal baseline—not a fresh benchmark against the original upstream
+repository. The speed/memory gains come with numerical approximation; accuracy
+preservation and statistical significance are not established. These historical
+numbers are not measurements of the current release's default configuration.
+
+A separate single-example release check observed **313.85 → 108.01 seconds
+(2.91×)**, with matching top prediction but substantial raw-score differences.
+See [full measurements, numerical trade-offs and reproduction instructions](docs/BENCHMARKS.md)
+and the [machine-readable evidence](benchmarks/recorded/comparison.json).
+
 ## Included implementations
 
 - Full-rank unfold/BSGS reference path (`--baseline`).
