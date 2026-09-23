@@ -1,0 +1,22 @@
+name: Go checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GOMAXPROCS: '4'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.25.x'
+          cache: true
+      - run: go test -p 1 ./...
+      - run: go vet ./...
+      - run: go test -race ./utils
+      - run: python3 -m unittest discover -s scripts -p 'test_*.py' -v
+      - run: go build -o build/enc-dashformer .
+      - run: ./build/enc-dashformer --help
