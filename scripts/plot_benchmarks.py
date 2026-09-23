@@ -19,7 +19,7 @@ def main():
     for row in historical['records']:
         for name,digest in row['sources'].items():
             assert hashlib.sha256((DATA.parent/name).read_bytes()).hexdigest()==digest,name
-    plt.rcParams.update({'font.size':11,'axes.spines.top':False,'axes.spines.right':False,'svg.fonttype':'none'})
+    plt.rcParams.update({'font.size':11,'axes.spines.top':False,'axes.spines.right':False,'svg.fonttype':'none','svg.hashsalt':'enc-dashformer-recorded-comparison'})
     fig,axes=plt.subplots(1,2,figsize=(10,4.8))
     specs=[('wall_seconds','End-to-end runtime','Seconds',1),('peak_rss_kib','Peak resident memory','GiB',1024**2)]
     for ax,(field,title,unit,divisor) in zip(axes,specs):
@@ -34,7 +34,9 @@ def main():
     fig.tight_layout(rect=(0,.16,1,.94))
     dest=ROOT/'docs/images';dest.mkdir(exist_ok=True)
     fig.savefig(dest/'historical-comparison.png',dpi=180)
-    fig.savefig(dest/'historical-comparison.svg')
+    fig.savefig(dest/'historical-comparison.svg',metadata={'Date':None})
+    svg=dest/'historical-comparison.svg'
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines())+'\n')
     print(f'Runtime ratio: {a["wall_seconds"]/b["wall_seconds"]:.3f}x; memory reduction: {100*(1-b["peak_rss_kib"]/a["peak_rss_kib"]):.2f}%')
 
 
